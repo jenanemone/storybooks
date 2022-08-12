@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const {ensureAuth, ensureGuest} = require('../middleware/auth.js')
+const Story = require('../models/Story')
 
 // @desc Login/Landing page
 // @route GET /
 
-router.get('/', (req, res) => {
+router.get('/', ensureGuest, (req, res) => {
     res.render('Login', {
         layout: "login"
     })
@@ -12,8 +14,18 @@ router.get('/', (req, res) => {
 
 // @desc Dashboard
 // @route GET /Dashboard
-router.get('/dashboard', (req,res) => {
-    res.render('Dashboard')
+router.get('/dashboard', ensureAuth, async (req,res) => {
+    try {
+        const stories = await Story.find({ user: req.user.id }).lean() // lean will create a plain JSON, not a mongoose object
+    }
+    catch (err) {
+        console.log(err)
+        res.render('/error/500')
+    }
+    console.log(req.user)
+    res.render('Dashboard', {
+        name: req.user.firstName
+    })
 })
 
 module.exports = router
