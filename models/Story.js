@@ -25,4 +25,4 @@ const StorySchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Story', StorySchema, 'users')
+module.exports = mongoose.model('Story', StorySchema)

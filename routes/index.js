@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {ensureAuth, ensureGuest} = require('../middleware/auth.js')
+const {ensureAuth, ensureGuest} = require('../middleware/auth')
 const Story = require('../models/Story')
 
 // @desc Login/Landing page
@@ -8,7 +8,7 @@ const Story = require('../models/Story')
 
 router.get('/', ensureGuest, (req, res) => {
     res.render('Login', {
-        layout: "login"
+        layout: 'login'
     })
 })
 
