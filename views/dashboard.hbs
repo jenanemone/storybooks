@@ -17,7 +17,7 @@
                     <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
                     <td><span class="dash-status">{{status}}</span></td>
                     <td>
-                        <a href="/stories/edit/{{_id}}" class="btn-float b tn"><i class="fas fa-edit"></i></a>
+                        <a href="/stories/edit/{{_id}}" class="btn-float btn"><i class="fas fa-edit"></i></a>
 
                         <form action="/stories/{{_id}}" method="POST" id="delete-form">
                             <input type="hidden" name="_method" value="DELETE">
